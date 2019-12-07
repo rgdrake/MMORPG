@@ -1,12 +1,12 @@
 function Player() {
     this.name = "";
     this.attributes = {
-        str: "",    //Strength
-        int: "",    //Intelligence
-        wis: "",    //Wisdom
-        dex: "",    //Dexterity
-        con: "",    //Constitution
-        cha: ""     //Charisma
+        str: 0,    //Strength
+        int: 0,    //Intelligence
+        wis: 0,    //Wisdom
+        dex: 0,    //Dexterity
+        con: 0,    //Constitution
+        cha: 0     //Charisma
     };
     this.hitpoints = 0;
     this.spellpoints = 0;
@@ -25,17 +25,27 @@ Player.prototype.rollAttribute = function() {
 }
 
 Player.prototype.rollCharacter = function() {
-    this.attributes.str = "Strenght:     " + this.rollAttribute();
-    this.attributes.int = "Intelligence: " + this.rollAttribute();
-    this.attributes.wis = "Wisdom:       " + this.rollAttribute();
-    this.attributes.dex = "Dexterity:    " + this.rollAttribute();
-    this.attributes.con = "Constitution: " + this.rollAttribute();
-    this.attributes.cha = "Charisma:     " + this.rollAttribute();
+    this.attributes.str = this.rollAttribute();
+    this.attributes.int = this.rollAttribute();
+    this.attributes.wis = this.rollAttribute();
+    this.attributes.dex = this.rollAttribute();
+    this.attributes.con = this.rollAttribute();
+    this.attributes.cha = this.rollAttribute();
+}
+
+Player.prototype.toHtml = function() {
+    let html = `Strength: ${this.attributes.str} <br />
+Intelligence: ${this.attributes.int} <br />
+Wisdom: ${this.attributes.wis} <br />
+Dexterity: ${this.attributes.dex} <br />
+Constitution: ${this.attributes.con} <br />
+Charisma: ${this.attributes.cha}`;
+    return html;
 }
 
 Player.prototype.constructor = Player;
 
 let player = new Player();
 player.rollCharacter();
+console.log(player.toHtml());
 console.log(JSON.stringify(player));
-
