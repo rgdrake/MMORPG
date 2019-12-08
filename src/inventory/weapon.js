@@ -1,5 +1,5 @@
 const Item = require('./item').Item;
-
+//const {Item} = require('./item');
 class Weapon extends Item {
     constructor(name, wei, damage) {
         super(name, wei);
