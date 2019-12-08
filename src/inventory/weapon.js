@@ -1,18 +1,17 @@
-const Item = require('./item').Item;
-//const {Item} = require('./item');
+const { Item } = require('./item');
+
 class Weapon extends Item {
-    constructor(name, wei, damage) {
-        super(name, wei);
-        this.damage = damage;
-        console.log(this.name + " " + this.weight);
-    }
+	constructor(name, wei, damage) {
+		super(name, wei);
+		this.damage = damage;
+	}
 }
 
 class Sword extends Weapon {
-    constructor() {
-        super("Sword", 3, 6);
-    }
+	constructor() {
+		super("Sword", 3, 6);
+	}
 }
 
-module.exports = {Sword: Sword};
+module.exports = { Sword: Sword };
 

@@ -1,0 +1,19 @@
+{
+  "name": "mmorpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://tildegit.org/rgdrake/mmorpg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colyseus": "^0.11.24"
+  }
+}
