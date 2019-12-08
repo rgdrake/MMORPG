@@ -1,10 +1,12 @@
 'use strict';
 
 class Item {
-    constructor() {
-        this.itemName = "";
-        this.weight = 0;
+    constructor(name, wei) {
+        this.itemName = name;
+        this.weight = wei;
     }
 }
+
+module.exports = {Item: Item};
 
 

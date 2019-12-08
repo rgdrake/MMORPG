@@ -1,3 +1,5 @@
+const Sword = require('../inventory/weapon');
+
 class Player {
     constructor() {
         this.name = "";
@@ -13,6 +15,8 @@ class Player {
         this.spellpoints = 0;
         this.x = 0;
         this.y = 0;
+        this.inventory = [];
+        this.inventory.push(new Sword.Sword());
     }
     
     rollAttribute() {
@@ -51,5 +55,5 @@ class Player {
 
 let player = new Player();
 player.rollCharacter();
-console.log(player.toHtml());
-console.log(JSON.stringify(player));
+console.log(player.inventory);
+//console.log(JSON.stringify(player));
