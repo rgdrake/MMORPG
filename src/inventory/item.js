@@ -1,4 +1,9 @@
-function fromPrototype(prototype, object) {
+function Item() {
+    this.itemName = "";
+    this.weight = 0;
+};
+
+Item.prototype.fromPrototype = function(prototype, object) {
     let newObject = Object.create(prototype);
 
     for(let prop in object) {
@@ -8,11 +13,6 @@ function fromPrototype(prototype, object) {
     }
     return newObject;
 }
-
-function Item() {
-    this.itemName = "";
-    this.weight = 0;
-};
 
 Item.prototype.setItemName = function(name) {
     this.itemName = name;
@@ -29,3 +29,5 @@ Item.prototype.setWeight = function(weight) {
 Item.prototype.getWeight = function() {
     return this.weight;
 }
+
+export {Item};
