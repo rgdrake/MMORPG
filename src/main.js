@@ -1,6 +1,7 @@
-var MMORPG = MMORPG || {};
-MMORPG.Game = {
-    camera: 0,
-    renderer: 0,
-    lights: 0
+class Game {
+    constructor() {
+        this.camera = 0;
+        this.renderer = 0;
+        this.lights = 0;
+    }
 }
