@@ -2,6 +2,10 @@ const colyseus = require('colyseus');
 
 exports.MyRoom = class extends colyseus.Room {
 
+	onAuth(client, options) {
+
+	}
+
 	onCreate(options) {
 
 	}
