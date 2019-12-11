@@ -15,16 +15,18 @@ class Game {
 		);
 
 		this.renderer = new THREE.WebGLRenderer();
-		this.renderer.setClearColor(new THREE.Color(0x000000));
+		this.renderer.setClearColor(new THREE.Color(0xFFFFFF));
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 
 
-		let planeGeometry = new THREE.PlaneGeometry(100, 100);
+		let planeGeometry = new THREE.PlaneGeometry(50, 50);
 		let planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffff00 });
-		let plane = THREE.Mesh(planeGeometry, planeMaterial);
+		let plane = new THREE.Mesh(planeGeometry, planeMaterial);
 		plane.rotation.x = -0.5 * Math.PI;
 		plane.position.set(15, 0, 0);
 		this.scene.add(plane);
+
+		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
 
 		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
 			let model = object;
@@ -34,7 +36,7 @@ class Game {
 		this.camera.position.set(-30, 40, 30);
 		this.camera.lookAt(this.scene.position);
 
-		document.getElementById('game').appendChild(renderer.domElement);
+		document.getElementById('game').appendChild(this.renderer.domElement);
 		this.renderer.render(this.scene, this.camera);
 
 	}
