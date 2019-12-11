@@ -20,7 +20,7 @@ class Game {
 
 
 		let planeGeometry = new THREE.PlaneGeometry(50, 50);
-		let planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffff00 });
+		let planeMaterial = new THREE.MeshLambertMaterial({ color: 0x0000FF });
 		let plane = new THREE.Mesh(planeGeometry, planeMaterial);
 		plane.rotation.x = -0.5 * Math.PI;
 		plane.position.set(15, 0, 0);
