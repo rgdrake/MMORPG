@@ -26,7 +26,10 @@ class Game {
 		plane.position.set(15, 0, 0);
 		this.scene.add(plane);
 
-
+		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
+			let model = object;
+			scene.add(model);
+		});
 
 		this.camera.position.set(-30, 40, 30);
 		this.camera.lookAt(this.scene.position);
