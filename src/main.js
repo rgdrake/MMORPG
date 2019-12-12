@@ -27,10 +27,9 @@ class Game {
 		this.scene.add(plane);
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
-		var model = 0;
 
 		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
-			model = object;
+			var model = object;
 			this.scene.add(model);
 		}, undefined, function (e) {
 			console.log('ERROR!!');
@@ -41,8 +40,11 @@ class Game {
 		this.camera.lookAt(this.scene.position);
 
 		document.getElementById('game').appendChild(this.renderer.domElement);
-		this.renderer.render(this.scene, this.camera);
+		this.animate();
+	}
 
+	animate() {
+		this.renderer.render(this.scene, this.camera);
 	}
 }
 
