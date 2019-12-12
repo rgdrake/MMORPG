@@ -22,16 +22,20 @@ class Game {
 		let planeGeometry = new THREE.PlaneGeometry(50, 50);
 		let planeMaterial = new THREE.MeshLambertMaterial({ color: 0x0000FF });
 		let plane = new THREE.Mesh(planeGeometry, planeMaterial);
-		plane.rotation.x = -0.5 * Math.PI;
+		plane.rotation.x = - Math.PI;
 		plane.position.set(15, 0, 0);
 		this.scene.add(plane);
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
 
+		let model = 0;
 		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
-			let model = object;
-			scene.add(model);
+			model = object;
+		}, undefined, function (e) {
+			console.log('ERROR!');
+			console.log(e);
 		});
+		this.scene.add(model);
 
 		this.camera.position.set(-30, 40, 30);
 		this.camera.lookAt(this.scene.position);
