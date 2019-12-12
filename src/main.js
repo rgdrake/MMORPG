@@ -1,18 +1,17 @@
 //	const THREE = require('three');
+var MMORPG = MMORPG || {};
 
-class Game {
-	constructor() {
-		this.camera = 0;
-		this.renderer = 0;
-		this.scene = new THREE.Scene();
-		this.loader = new THREE.FBXLoader();
-	}
+MMORPG.Game = {
+	camera: 0,
+	renderer: 0,
+	scene: new THREE.Scene(),
+	loader: new THREE.FBXLoader(),
 
-	initScene() {
+	initScene: function () {
 		this.camera = new THREE.PerspectiveCamera(
 			45, window.innerWidth / window.innerHeight,
-			0.1, 1000
-		);
+			0.1, 1000);
+
 
 		this.renderer = new THREE.WebGLRenderer();
 		this.renderer.setClearColor(new THREE.Color(0xFFFFFF));
@@ -22,8 +21,7 @@ class Game {
 		let planeGeometry = new THREE.PlaneGeometry(50, 50);
 		let planeMaterial = new THREE.MeshLambertMaterial({ color: 0x0000FF });
 		let plane = new THREE.Mesh(planeGeometry, planeMaterial);
-		plane.rotation.x = - Math.PI;
-		plane.position.set(15, 0, 0);
+		plane.rotation.x = -Math.PI / 2;
 		this.scene.add(plane);
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
@@ -31,9 +29,6 @@ class Game {
 		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
 			var model = object;
 			this.scene.add(model);
-		}, undefined, function (e) {
-			console.log('ERROR!!');
-			console.log(e);
 		});
 
 		this.camera.position.set(-30, 40, 30);
@@ -41,12 +36,12 @@ class Game {
 
 		document.getElementById('game').appendChild(this.renderer.domElement);
 		this.animate();
-	}
+	},
 
-	animate() {
-		this.renderer.render(this.scene, this.camera);
+	animate: function () {
+		requestAnimationFrame(MMORPG.Game.animate);
+		MMORPG.Game.renderer.render(MMORPG.Game.scene, MMORPG.Game.camera);
 	}
 }
 
-let game = new Game();
-game.initScene();
+MMORPG.Game.initScene();
