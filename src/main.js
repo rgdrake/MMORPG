@@ -26,7 +26,7 @@ MMORPG.Game = {
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
 
-		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
+		this.loader.load('assets/SM_Bld_Base_01.fbx', (object) => {
 			var model = object;
 			this.scene.add(model);
 		});
