@@ -56,7 +56,7 @@ function init() {
 	initGround();
 	initCamera();
 	initRenderer();
-	buildScene();
+	buildScene(this);
 
 	this.camera.position.set(-30, 100, 30);
 	this.camera.lookAt(this.scene.position);
