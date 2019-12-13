@@ -5,7 +5,7 @@ MMORPG.Game = {
 	camera: 0,
 	renderer: 0,
 	scene: new THREE.Scene(),
-	loader: new THREE.GLTFLoader(),
+	loader: new THREE.FBXLoader(),
 
 	initScene: function () {
 		this.camera = new THREE.PerspectiveCamera(
@@ -26,12 +26,14 @@ MMORPG.Game = {
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
 
-		this.loader.setDRACOLoader(new THREE.DRACOLoader());
 		const that = this;
+		var _obj = 0;
 		this.loader.load('assets/SM_Bld_Base_01.glb', function (object) {
-			that.scene.add(object.scene);
+			_obj = object;
+			that.scene.add(_obj.scene);
 		}, undefined, function (e) {
-			console.log(e);
+			console.error("ERROR!");
+			console.error(e);
 		});
 
 		this.camera.position.set(-30, 40, 30);
