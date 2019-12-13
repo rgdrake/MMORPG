@@ -26,9 +26,12 @@ MMORPG.Game = {
 
 		this.scene.add(new THREE.AmbientLight("#FFFFFF"))
 
-		this.loader.load('assets/SM_Bld_Base_01.fbx', (object) => {
-			var model = object;
-			this.scene.add(model);
+		this.loader.setDRACOLoader(new THREE.DRACOLoader());
+		const that = this;
+		this.loader.load('assets/SM_Bld_Base_01.glb', function (object) {
+			that.scene.add(object.scene);
+		}, undefined, function (e) {
+			console.log(e);
 		});
 
 		this.camera.position.set(-30, 40, 30);
