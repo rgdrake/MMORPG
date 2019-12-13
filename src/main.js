@@ -5,7 +5,7 @@ MMORPG.Game = {
 	camera: 0,
 	renderer: 0,
 	scene: new THREE.Scene(),
-	loader: new THREE.FBXLoader(),
+	loader: new THREE.GLTFLoader(),
 
 	initScene: function () {
 		this.camera = new THREE.PerspectiveCamera(
