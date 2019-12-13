@@ -48,7 +48,7 @@ MMORPG.Game = {
 		});
 	},
 
-	initScene: function () {
+	init: function () {
 		this.initCamera();
 		this.initRenderer();
 		this.initGround();
@@ -59,7 +59,6 @@ MMORPG.Game = {
 		this.camera.lookAt(this.scene.position);
 
 		document.getElementById('game').appendChild(this.renderer.domElement);
-		this.animate();
 	},
 
 
@@ -70,4 +69,5 @@ MMORPG.Game = {
 	}
 }
 
-MMORPG.Game.initScene();
+MMORPG.Game.init();
+MMORPG.Game.animate();
