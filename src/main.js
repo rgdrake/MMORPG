@@ -1,7 +1,74 @@
 //	const THREE = require('three');
-var MMORPG = MMORPG || {};
+//var MMORPG = MMORPG || {};
 
-MMORPG.Game = {
+var camera = 0;
+var renderer = 0;
+var scene = new THREE.Scene();
+var loader = new THREE.FBXLoader();
+
+function initLight() {
+	scene.add(new THREE.AmbientLight(0xFFFFFF));
+}
+
+function initGround() {
+	let groundGeometry = new THREE.PlaneBufferGeometry(50, 50);
+	let dirt = new THREE.TextureLoader('assets/pixel_pave.jpg');
+	let earth = new THREE.MeshLambertMaterial({ map: dirt });
+
+	let ground = new THREE.Mesh(groundGeometry, earth);
+	ground.rotation.x = -Math.PI / 2;
+	ground.receiveShadow = true;
+
+	scene.add(ground);
+}
+
+function initCamera() {
+	camera = new THREE.PerspectiveCamera(
+		45, window.innerWidth / window.innerHeight,
+		0.1, 1000);
+}
+
+function initRenderer() {
+	renderer = new THREE.WebGLRenderer();
+	renderer.setClearColor(new THREE.Color(0xFFFFFF));
+	renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function buildScene(that) {
+	var _obj = 0;
+	loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
+		_obj = object;
+		console.log(_obj.children[0]);
+		that.scene.add(_obj);
+	}, undefined, function (e) {
+		console.error("ERROR!");
+		console.error(e);
+	});
+}
+
+function animate() {
+	requestAnimationFrame(animate);
+	renderer.render(scene, camera);
+}
+
+function init() {
+	initLight();
+	initGround();
+	initCamera();
+	initRenderer();
+	buildScene();
+
+	this.camera.position.set(-30, 100, 30);
+	this.camera.lookAt(this.scene.position);
+
+	document.getElementById('game').appendChild(this.renderer.domElement);
+}
+
+init();
+animate();
+
+/*
+MORPG.Game = {
 	camera: 0,
 	renderer: 0,
 	scene: new THREE.Scene(),
@@ -41,6 +108,7 @@ MMORPG.Game = {
 		var _obj = 0;
 		this.loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
 			_obj = object;
+			console.log(_obj.children[0]);
 			that.scene.add(_obj);
 		}, undefined, function (e) {
 			console.error("ERROR!");
@@ -71,3 +139,4 @@ MMORPG.Game = {
 
 MMORPG.Game.init();
 MMORPG.Game.animate();
+*/
