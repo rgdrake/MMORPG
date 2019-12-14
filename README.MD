@@ -1,1 +1,1 @@
-# Vikings vs Dragons
+# Vikings vs Dragons RPG

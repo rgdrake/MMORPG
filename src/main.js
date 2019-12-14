@@ -12,14 +12,13 @@ function initLight() {
 
 function initGround() {
 	let groundGeometry = new THREE.PlaneBufferGeometry(50, 50);
-	let dirt = new THREE.TextureLoader('assets/pixel_pave.jpg');
-	let earth = new THREE.MeshLambertMaterial({ map: dirt });
-
-	let ground = new THREE.Mesh(groundGeometry, earth);
-	ground.rotation.x = -Math.PI / 2;
-	ground.receiveShadow = true;
-
-	scene.add(ground);
+	new THREE.TextureLoader().load('assets/pixel-pave.jpg', function (dirt) {
+		const earth = new THREE.MeshLambertMaterial({ map: dirt });
+		const ground = new THREE.Mesh(groundGeometry, earth);
+		ground.rotation.x = -0.5 * Math.PI;
+		ground.receiveShadow = true;
+		scene.add(ground);
+	});
 }
 
 function initCamera() {
@@ -34,15 +33,15 @@ function initRenderer() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function buildScene(that) {
-	var _obj = 0;
+function buildScene() {
 	loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
-		_obj = object;
-		console.log(_obj.children[0]);
-		that.scene.add(_obj);
-	}, undefined, function (e) {
-		console.error("ERROR!");
-		console.error(e);
+		object.traverse(function (child) {
+			if (child.isMesh) {
+				child.castShadow = true;
+				child.receiveShadow = true;
+			}
+		});
+		scene.add(object);
 	});
 }
 
@@ -56,9 +55,9 @@ function init() {
 	initGround();
 	initCamera();
 	initRenderer();
-	buildScene(this);
+	buildScene();
 
-	this.camera.position.set(-30, 100, 30);
+	this.camera.position.set(-30, 75, 30);
 	this.camera.lookAt(this.scene.position);
 
 	document.getElementById('game').appendChild(this.renderer.domElement);
