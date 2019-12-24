@@ -12,6 +12,8 @@ function load() {
 		object.traverse(function (child) {
 			if (child.isMesh) child.material.map = texture;
 		});
+		object.position.x = 0;
+		object.position.z = 0;
 		scene.add(object);
 	}
 
