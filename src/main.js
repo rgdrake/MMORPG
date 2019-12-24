@@ -1,10 +1,49 @@
-//	const THREE = require('three');
-//var MMORPG = MMORPG || {};
+import * as THREE from 'lib/three';
+import { OBJLoader } from 'lib/OBJLoader';
 
 var camera = 0;
 var renderer = 0;
 var scene = new THREE.Scene();
-var loader = new THREE.FBXLoader();
+var manager = 0;	//new THREE.LoadingManager();
+var loader = 0;		//new THREE.OBJLoader(manager);
+var texture = ;
+
+function load() {
+	let object = 0; //loaded object
+
+	function loadModel() {
+		object.traverse(function (child) {
+			if (child.isMesh) child.material.map = texture;
+		});
+		scene.add(object);
+	}
+
+	manager = new THREE.LoadingManager(loadModel);
+
+	let textureLoader = new THREE.TextureLoader(manager);
+	texture = textureLoader.load('assets/pixel-pav.jpg');
+
+	manager.onStart = function (url, itemsLoaded, itemsTotal) {
+		console.log(`Started loading ${url}. \nLoaded: ${itemsLoaded} of ${itemsTotal} files`);
+	};
+
+	manager.onLoad = function () {
+		console.log('Loading complete.');
+	};
+
+	manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+		console.log(`Loading file: ${url}.\nLoaded ${itemsLoaded} of ${itemTotal} files.`)
+	};
+
+	manager.onError = function (url) {
+		console.error(`Error loading ${url}`);
+	};
+
+	loader = new THREE.OBJLoader(manager);
+	loader.load('assets/SM_Bld_Base_01.obj', (obj) => {
+		object = obj;
+	}, onProgress, onError);
+}
 
 function initLight() {
 	scene.add(new THREE.AmbientLight(0xFFFFFF));
@@ -12,14 +51,10 @@ function initLight() {
 
 function initGround() {
 	let groundGeometry = new THREE.PlaneBufferGeometry(50, 50);
-	new THREE.TextureLoader().load('assets/pixel-pave.jpg', function (dirt) {
-		const earth = new THREE.MeshLambertMaterial({ map: dirt });
-		const ground = new THREE.Mesh(groundGeometry, earth);
-		ground.rotation.x = -0.5 * Math.PI;
-		ground.receiveShadow = true;
-		scene.add(ground);
-	});
+
 }
+
+
 
 function initCamera() {
 	camera = new THREE.PerspectiveCamera(
@@ -31,18 +66,6 @@ function initRenderer() {
 	renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor(new THREE.Color(0xFFFFFF));
 	renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function buildScene() {
-	loader.load('assets/SM_Bld_Base_01.fbx', function (object) {
-		object.traverse(function (child) {
-			if (child.isMesh) {
-				child.castShadow = true;
-				child.receiveShadow = true;
-			}
-		});
-		scene.add(object);
-	});
 }
 
 function animate() {
