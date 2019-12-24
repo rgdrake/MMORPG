@@ -26,8 +26,7 @@ function load() {
 
 	manager = new THREE.LoadingManager(loadModel);
 
-	let textureLoader = new THREE.TextureLoader(manager);
-	texture = textureLoader.load('assets/pixel-pav.jpg');
+	texture = new THREE.TextureLoader().load('assets/pixel-pave.jpg');
 
 	manager.onStart = function (url, itemsLoaded, itemsTotal) {
 		console.log(`Started loading ${url}. \nLoaded: ${itemsLoaded} of ${itemsTotal} files`);
@@ -38,7 +37,7 @@ function load() {
 	};
 
 	manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-		console.log(`Loading file: ${url}.\nLoaded ${itemsLoaded} of ${itemTotal} files.`)
+		console.log(`Loading file: ${url}.\nLoaded ${itemsLoaded} of ${itemsTotal} files.`)
 	};
 
 	manager.onError = function (url) {
@@ -48,7 +47,7 @@ function load() {
 	loader = new THREE.OBJLoader(manager);
 	loader.load('assets/SM_Bld_Base_01.obj', (obj) => {
 		object = obj;
-	}, onProgress, onError);
+	}, manager.onProgress, manager.onError);
 }
 
 function initLight() {
@@ -56,8 +55,15 @@ function initLight() {
 }
 
 function initGround() {
-	let groundGeometry = new THREE.PlaneBufferGeometry(50, 50);
-	scene.add(new THREE.Mesh(groundGeometry, textire));
+	let groundGeometry = new THREE.PlaneBufferGeometry(100, 100);
+	let earth = new THREE.MeshLambertMaterial({
+		map: texture
+	});
+	let ground = new THREE.Mesh(groundGeometry, earth);
+	ground.rotation.x = -Math.PI / 2;
+	ground.receiveShadow = true;
+
+	scene.add(ground);
 
 }
 
