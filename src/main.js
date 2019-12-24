@@ -57,6 +57,7 @@ function initLight() {
 
 function initGround() {
 	let groundGeometry = new THREE.PlaneBufferGeometry(50, 50);
+	scene.add(new THREE.Mesh(groundGeometry, textire));
 
 }
 
@@ -80,11 +81,11 @@ function animate() {
 }
 
 function init() {
+	load();
 	initLight();
 	initGround();
 	initCamera();
 	initRenderer();
-	load();
 
 	this.camera.position.set(-30, 75, 30);
 	this.camera.lookAt(this.scene.position);
