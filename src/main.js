@@ -1,12 +1,18 @@
-import * as THREE from 'lib/three';
-import { OBJLoader } from 'lib/OBJLoader';
+/*
+const THREE = require('./lib/three.js');
+const OBJLoader = require('./lib/OBJLoader');
+
+
+import * as THREE from './lib/three.js';
+import { OBJLoader } from './lib/OBJLoader.js';
+*/
 
 var camera = 0;
 var renderer = 0;
 var scene = new THREE.Scene();
 var manager = 0;	//new THREE.LoadingManager();
 var loader = 0;		//new THREE.OBJLoader(manager);
-var texture = ;
+var texture = 0;
 
 function load() {
 	let object = 0; //loaded object
@@ -78,7 +84,7 @@ function init() {
 	initGround();
 	initCamera();
 	initRenderer();
-	buildScene();
+	load();
 
 	this.camera.position.set(-30, 75, 30);
 	this.camera.lookAt(this.scene.position);
