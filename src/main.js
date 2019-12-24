@@ -13,6 +13,7 @@ function load() {
 			if (child.isMesh) child.material.map = texture;
 		});
 		object.position.x = 0;
+		object.position.y = 0;
 		object.position.z = 0;
 		scene.add(object);
 	}
