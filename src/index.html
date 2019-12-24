@@ -5,9 +5,11 @@
 	<meta charset="utf-8">
 	<title>Vikings VS Dragons RPG</title>
 	<script src="lib/three.js"></script>
+	<!--
 	<script src="lib/OBJLoader.js"></script>
 	<script src="lib/MTLLoader.js"></script>
 	<script src="lib/threex.keyboardstate.js"></script>
+	-->
 	<style>
 		body {
 			background-color: black;
@@ -18,8 +20,14 @@
 </head>
 
 <body>
+	<!--
 	<div id="game"></div>
 	<script src="main.js"></script>
+	-->
+	<script type="module">
+		import * as THREE from 'lib/three.js';
+		import { OBJLoader2 } from 'lib/OBJLoader2.js'
+	</script>
 </body>
 
 </html>
