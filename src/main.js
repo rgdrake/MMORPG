@@ -64,12 +64,9 @@ class Game {
 		const loader = new THREE.FBXLoader();
 		const game = this;
 
-		loader.load(this.assetsPath + '/FireFighter.fbx', function (object) {
-			object.mixer = new THREE.AnimationMixer(object);
-			game.player.mixer = object.mixer;
-			game.player.root = object.mixer.getRoot();
+		loader.load(this.assetsPath + '/SM_Bld_Base_01.fbx', function (object) {
 
-			object.name = 'FireFighter';
+			object.name = 'Base';
 
 			object.traverse(function (child) {
 				if (child.isMesh) {
@@ -80,7 +77,6 @@ class Game {
 			});
 			game.scene.add(object);
 			game.player.object = object;
-			game.player.mixer.clipAction(object.animations[0]).play();
 
 			game.animate();
 		});
