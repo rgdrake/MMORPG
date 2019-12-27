@@ -30,10 +30,12 @@ class Game {
 		this.camera = new THREE.PerspectiveCamera(
 			45, window.innerWidth / window.innerHeight,
 			1, 2000);
+		this.camera.position.set(5, 10, 5);
+		this.camera.lookAt(new THREE.Vector3(752, 313, 693));
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xa0a0a0);
-		this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+		//this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
 		let light = new THREE.HemisphereLight(0xffffff);
 		light.position.set(0, 200, 0);
@@ -50,7 +52,7 @@ class Game {
 
 		let mesh = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(2000, 2000),
-			new THREE.MeshPhongMaterial({ color: 0x999999 })
+			new THREE.MeshPhongMaterial({ color: 0x00FF00 })
 		);
 		mesh.rotation.x = - Math.PI / 2;
 		mesh.receiveShadow = true;
@@ -70,15 +72,22 @@ class Game {
 
 			object.traverse(function (child) {
 				if (child.isMesh) {
-					child.material.map = null;
+					//child.material.map = null;
 					child.castShadow = true;
 					child.receiveShadow = false;
 				}
 			});
-			game.scene.add(object);
-			game.player.object = object;
 
-			game.animate();
+			const tLoader = new THREE.TextureLoader();
+			tLoader.load(this.assetsPath + '/Texture_01.png', function (texture) {
+				object.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = texture;
+					}
+				});
+			});
+
+			game.scene.add(object);
 		});
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -88,7 +97,7 @@ class Game {
 		this.container.appendChild(this.renderer.domElement);
 
 		this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-		this.controls.target.set(0, 150, 0);
+		this.controls.target.set(0, 250, 0);
 		this.controls.update();
 
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
