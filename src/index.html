@@ -2,36 +2,28 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Vikings VS Dragons RPG</title>
-	<!--
-	<script src="lib/three.js"></script>
-	<script src="lib/OBJLoader.js"></script>
-	<script src="lib/MTLLoader.js"></script>
-	<script src="lib/threex.keyboardstate.js"></script>
-	-->
+	<meta charset="utf-8" />
+	<title>THREE.js tutorial - step 1</title>
 	<style>
 		body {
-			background-color: black;
 			margin: 0;
-			overflow: hidden;
 		}
 	</style>
 </head>
 
 <body>
-	<!--
-	<div id="game"></div>
+	<script src="./lib/three.min.js"></script>
+	<script src="./lib/inflate.min.js"></script>
+	<script src="./lib/FBXLoader.js"></script>
+	<script src="./lib/OrbitControls.js"></script>
+	<script src="./lib/Detector.js"></script>
 	<script src="main.js"></script>
-	-->
-	<div id="game"></div>
-	<script type="module">
-		import * as THREE from 'http://localhost:8000/lib/three.module.js';
-		import { OBJLoader2 } from 'http://localhost:8000/lib/OBJLoader2.js'
-		import * as game from 'http://localhost:8000/main.js';
-
-		game.init();
-		game.animate();
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const game = new Game();
+			window.game = game;
+			game.animate();
+		});
 	</script>
 </body>
 

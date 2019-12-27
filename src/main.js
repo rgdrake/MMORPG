@@ -1,99 +1,120 @@
-var camera = 0;
-var renderer = 0;
-var scene = new THREE.Scene();
-var manager = 0;	//new THREE.LoadingManager();
-var loader = 0;		//new THREE.OBJLoader(manager);
-var texture = 0;
+class Game {
+	constructor() {
+		if (!Detector.webgl) Detector.addGetWebGLMessage();
+		this.container;
+		this.player = [];
+		this.stats;
+		this.controls;
+		this.camera;
+		this.scene;
+		this.renderer;
 
-function load() {
-	let object = 0; //loaded object
+		this.container = document.createElement('div');
+		this.container.style.height = '100%';
+		document.body.appendChild(this.container);
 
-	function loadModel() {
-		object.traverse(function (child) {
-			if (child.isMesh) child.material.map = texture;
-		});
-		object.position.x = 0;
-		object.position.y = 0;
-		object.position.z = 0;
-		scene.add(object);
+		const game = this;
+
+		this.assetsPath = './assets';
+
+		this.clock = new THREE.Clock();
+
+		this.init();
+
+		window.onError = (error) => {
+			console.error(JSON.stringify(error));
+		};
 	}
 
-	manager = new THREE.LoadingManager(loadModel);
+	init() {
+		this.camera = new THREE.PerspectiveCamera(
+			45, window.innerWidth / window.innerHeight,
+			1, 2000);
 
-	texture = new THREE.TextureLoader().load('assets/pixel-pave.jpg');
+		this.scene = new THREE.Scene();
+		this.scene.background = new THREE.Color(0xa0a0a0);
+		this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
-	manager.onStart = function (url, itemsLoaded, itemsTotal) {
-		console.log(`Started loading ${url}. \nLoaded: ${itemsLoaded} of ${itemsTotal} files`);
-	};
+		let light = new THREE.HemisphereLight(0xffffff);
+		light.position.set(0, 200, 0);
+		this.scene.add(light);
 
-	manager.onLoad = function () {
-		console.log('Loading complete.');
-	};
+		light = new THREE.DirectionalLight(0xffffff);
+		light.position.set(0, 200, 100);
+		light.castShadow = true;
+		light.shadow.camera.top = 180;
+		light.shadow.camera.bottom = -100;
+		light.shadow.camera.left = -120;
+		light.shadow.camera.right = 120;
+		this.scene.add(light);
 
-	manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-		console.log(`Loading file: ${url}.\nLoaded ${itemsLoaded} of ${itemsTotal} files.`)
-	};
+		let mesh = new THREE.Mesh(
+			new THREE.PlaneBufferGeometry(2000, 2000),
+			new THREE.MeshPhongMaterial({ color: 0x999999 })
+		);
+		mesh.rotation.x = - Math.PI / 2;
+		mesh.receiveShadow = true;
+		this.scene.add(mesh);
 
-	manager.onError = function (url) {
-		console.error(`Error loading ${url}`);
-	};
+		let grid = new THREE.GridHelper(2000, 40, 0x000000, 0x000000);
+		grid.material.opacity = 0.2;
+		grid.material.transparent = true;
+		this.scene.add(grid);
 
-	loader = new THREE.OBJLoader(manager);
-	loader.load('assets/SM_Bld_Base_01.obj', (obj) => {
-		object = obj;
-	}, manager.onProgress, manager.onError);
+		const loader = new THREE.FBXLoader();
+		const game = this;
+
+		loader.load(this.assetsPath + '/FireFighter.fbx', function (object) {
+			object.mixer = new THREE.AnimationMixer(object);
+			game.player.mixer = object.mixer;
+			game.player.root = object.mixer.getRoot();
+
+			object.name = 'FireFighter';
+
+			object.traverse(function (child) {
+				if (child.isMesh) {
+					child.material.map = null;
+					child.castShadow = true;
+					child.receiveShadow = false;
+				}
+			});
+			game.scene.add(object);
+			game.player.object = object;
+			game.player.mixer.clipAction(object.animations[0]).play();
+
+			game.animate();
+		});
+
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer.setPixelRatio(window.devicePixelRatio);
+		this.renderer.setSize(window.innerWidth, window.innerHeight);
+		this.renderer.shadowMap.enabled = true;
+		this.container.appendChild(this.renderer.domElement);
+
+		this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+		this.controls.target.set(0, 150, 0);
+		this.controls.update();
+
+		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
+	}
+
+	onWindowResize() {
+		this.camera.aspect = window.innerWidth / window.innerHeight;
+		this.camera.updateProjectionMatrix();
+
+		this.renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+	animate() {
+		const game = this;
+		const dt = this.clock.getDelta();
+
+		requestAnimationFrame(function () { game.animate(); });
+
+		if (this.player.mixer !== undefined) {
+			this.player.mixer.update(dt);
+		}
+
+		this.renderer.render(this.scene, this.camera);
+	}
 }
-
-function initLight() {
-	scene.add(new THREE.AmbientLight(0xFFFFFF));
-}
-
-function initGround() {
-	let groundGeometry = new THREE.PlaneBufferGeometry(100, 100);
-	let earth = new THREE.MeshLambertMaterial({
-		map: texture
-	});
-	let ground = new THREE.Mesh(groundGeometry, earth);
-	ground.rotation.x = -Math.PI / 2;
-	ground.receiveShadow = true;
-
-	scene.add(ground);
-
-}
-
-function initCamera() {
-	camera = new THREE.PerspectiveCamera(
-		45, window.innerWidth / window.innerHeight,
-		0.1, 1000);
-	camera.position.set(0, 10, 20);
-	camera.lookAt(scene.position);
-
-	scene.add(camera);
-}
-
-function initRenderer() {
-	renderer = new THREE.WebGLRenderer();
-	renderer.setClearColor(new THREE.Color(0xFFFFFF));
-	renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function animate() {
-	requestAnimationFrame(animate);
-	renderer.render(scene, camera);
-}
-
-function init() {
-	load();
-	initLight();
-	initGround();
-	initCamera();
-	initRenderer();
-
-	this.camera.position.set(-30, 75, 30);
-	this.camera.lookAt(this.scene.position);
-
-	document.getElementById('game').appendChild(this.renderer.domElement);
-}
-
-init();
-animate();
