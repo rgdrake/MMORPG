@@ -1,6 +1,6 @@
 class Game {
 	constructor() {
-		if (!Detector.webgl) Detector.addGetWebGLMessage();
+		if (!THREE.WEBGL.isWebGLAvailable()) WEBGL.addGetWebGLMessage();
 		this.container;
 		this.player = [];
 		this.stats;
@@ -63,31 +63,14 @@ class Game {
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
-		const loader = new THREE.FBXLoader();
-		const game = this;
-
-		loader.load(this.assetsPath + '/SM_Bld_Base_01.fbx', function (object) {
-
-			object.name = 'Base';
-
-			object.traverse(function (child) {
-				if (child.isMesh) {
-					//child.material.map = null;
-					child.castShadow = true;
-					child.receiveShadow = false;
-				}
+		const mtlLoader = new MTLLoader();
+		mtlLoader.load(this.assetsPath + '/Building_01.mtl', (mtlParseResult) => {
+			const objLoader = new OBJLoader2();
+			const material = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+			objLoader.addMaterials(material);
+			objLoader.load(assetsPath + '/Building_01.obj', (root) => {
+				this.scene.add(root);
 			});
-
-			const tLoader = new THREE.TextureLoader();
-			tLoader.load(this.assetsPath + '/Texture_01.png', function (texture) {
-				object.traverse(function (child) {
-					if (child.isMesh) {
-						child.material.map = texture;
-					}
-				});
-			});
-
-			game.scene.add(object);
 		});
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -96,9 +79,7 @@ class Game {
 		this.renderer.shadowMap.enabled = true;
 		this.container.appendChild(this.renderer.domElement);
 
-		this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-		this.controls.target.set(0, 250, 0);
-		this.controls.update();
+		this.keyboard = new THREEx.KeyboardState();
 
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
 	}

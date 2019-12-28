@@ -3,20 +3,24 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>THREE.js tutorial - step 1</title>
+	<title>THREE.js tutorial</title>
 	<style>
 		body {
 			margin: 0;
 		}
 	</style>
+	<script src="lib/three.js"></script>
 </head>
 
 <body>
-	<script src="./lib/three.min.js"></script>
-	<script src="./lib/inflate.min.js"></script>
 
-	<script src="./lib/OrbitControls.js"></script>
-	<script src="./lib/Detector.js"></script>
+	<script type="module">
+		import { OBJLoader2 } from "./jsm/loaders/OBJLoader2.js";
+		import { MTLLoader } from "./jsm/loaders/MTLLoader.js";
+		import { MtlObjBridge } from "./jsm/loaders/obj2/bridge/MtlObjBridge.js";	
+	</script>
+	<script src="./lib/threex.keyboardstate.js"></script>
+	<script src="./lib/WebGL.js"></script>
 	<script src="main.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
