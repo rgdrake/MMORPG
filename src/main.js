@@ -50,13 +50,13 @@ class Game {
 		light.shadow.camera.right = 120;
 		this.scene.add(light);
 
-		let mesh = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(2000, 2000),
-			new THREE.MeshPhongMaterial({ color: 0x00FF00 })
-		);
-		mesh.rotation.x = - Math.PI / 2;
-		mesh.receiveShadow = true;
-		this.scene.add(mesh);
+		// let mesh = new THREE.Mesh(
+		// 	new THREE.PlaneBufferGeometry(2000, 2000),
+		// 	new THREE.MeshPhongMaterial({ color: 0x00FF00 })
+		// );
+		// mesh.rotation.x = - Math.PI / 2;
+		// mesh.receiveShadow = true;
+		// this.scene.add(mesh);
 
 		let grid = new THREE.GridHelper(2000, 40, 0x000000, 0x000000);
 		grid.material.opacity = 0.2;
@@ -68,7 +68,9 @@ class Game {
 			const objLoader = new OBJLoader2();
 			const material = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 			objLoader.addMaterials(material);
-			objLoader.load(assetsPath + '/Building_01.obj', (root) => {
+			// objLoader.load(this.assetsPath + '/Building_01.obj', (root) => {
+			objLoader.load(this.assetsPath + '/windmill.obj', (root) => {
+				console.log('root === ',root);
 				this.scene.add(root);
 			});
 		});
@@ -78,6 +80,10 @@ class Game {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.shadowMap.enabled = true;
 		this.container.appendChild(this.renderer.domElement);
+
+		const controls = new OrbitControls(this.camera, this.renderer.domElement);
+		controls.target.set(0, 5, 0);
+		controls.update();
 
 		this.keyboard = new THREEx.KeyboardState();
 
