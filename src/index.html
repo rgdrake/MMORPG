@@ -15,9 +15,12 @@
 <body>
 
 	<script type="module">
+		import { OrbitControls } from "./jsm/controls/OrbitControls.js";
 		import { OBJLoader2 } from "./jsm/loaders/OBJLoader2.js";
 		import { MTLLoader } from "./jsm/loaders/MTLLoader.js";
 		import { MtlObjBridge } from "./jsm/loaders/obj2/bridge/MtlObjBridge.js";	
+
+		window.OrbitControls = OrbitControls;
 		window.OBJLoader2 = OBJLoader2;
 		window.MTLLoader = MTLLoader;
 		window.MtlObjBridge = MtlObjBridge;
