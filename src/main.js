@@ -35,7 +35,7 @@ class Game {
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xa0a0a0);
-		//this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+		// this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
 		let light = new THREE.HemisphereLight(0xffffff);
 		light.position.set(0, 200, 0);
@@ -50,30 +50,29 @@ class Game {
 		light.shadow.camera.right = 120;
 		this.scene.add(light);
 
-		// let mesh = new THREE.Mesh(
-		// 	new THREE.PlaneBufferGeometry(2000, 2000),
-		// 	new THREE.MeshPhongMaterial({ color: 0x00FF00 })
-		// );
-		// mesh.rotation.x = - Math.PI / 2;
-		// mesh.receiveShadow = true;
-		// this.scene.add(mesh);
+		let mesh = new THREE.Mesh(
+			new THREE.PlaneBufferGeometry(2000, 2000),
+			new THREE.MeshPhongMaterial({ color: 0x00FF00 })
+		);
+		mesh.rotation.x = - Math.PI / 2;
+		mesh.receiveShadow = true;
+		this.scene.add(mesh);
 
 		let grid = new THREE.GridHelper(2000, 40, 0x000000, 0x000000);
-		grid.material.opacity = 0.2;
-		grid.material.transparent = true;
+		grid.material.opacity = 1.0;
 		this.scene.add(grid);
 
-		const mtlLoader = new MTLLoader();
-		mtlLoader.load(this.assetsPath + '/Building_01.mtl', (mtlParseResult) => {
-			const objLoader = new OBJLoader2();
-			const material = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-			objLoader.addMaterials(material);
-			// objLoader.load(this.assetsPath + '/Building_01.obj', (root) => {
-			objLoader.load(this.assetsPath + '/windmill.obj', (root) => {
-				console.log('root === ',root);
-				this.scene.add(root);
-			});
+		//const mtlLoader = new MTLLoader();
+		//mtlLoader.load(this.assetsPath + '/Building_01.mtl', (mtlParseResult) => {
+		const loader = new THREE.GLTFLoader();
+		//const material = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+		//objLoader.addMaterials(material);
+		// objLoader.load(this.assetsPath + '/Building_01.obj', (root) => {
+		loader.load(this.assetsPath + '/SM_Bld_Base_01.glb', (root) => {
+			console.log('root === ', root);
+			this.scene.add(root.scene);
 		});
+		//});
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio(window.devicePixelRatio);
