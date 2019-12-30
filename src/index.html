@@ -9,20 +9,14 @@
 			margin: 0;
 		}
 	</style>
-	<script src="lib/three.js"></script>
-	<script src="lib/GLTFLoader.js"></script>
+    <script src="../node_modules/three/build/three.js"></script>
+    <script src="../node_modules/three/examples/js/loaders/FBXLoader.js"></script>
+    <script src="../node_modules/three/examples/js/controls/OrbitControls.js"></script>
+    <script src="./Inflate.min.js"></script>
 </head>
 
 <body>
 
-	<script type="module">
-		import { OrbitControls } from "./jsm/controls/OrbitControls.js";
-
-		window.OrbitControls = OrbitControls;
-
-	</script>
-	<script src="./lib/threex.keyboardstate.js"></script>
-	<script src="./lib/WebGL.js"></script>
 	<script src="main.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {

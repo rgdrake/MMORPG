@@ -1,6 +1,6 @@
 class Game {
 	constructor() {
-		if (!THREE.WEBGL.isWebGLAvailable()) WEBGL.addGetWebGLMessage();
+		// if (!THREE.WEBGL.isWebGLAvailable()) WEBGL.addGetWebGLMessage();
 		this.container;
 		this.player = [];
 		this.stats;
@@ -50,29 +50,36 @@ class Game {
 		light.shadow.camera.right = 120;
 		this.scene.add(light);
 
-		let mesh = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(2000, 2000),
-			new THREE.MeshPhongMaterial({ color: 0x00FF00 })
-		);
-		mesh.rotation.x = - Math.PI / 2;
-		mesh.receiveShadow = true;
-		this.scene.add(mesh);
+		// let mesh = new THREE.Mesh(
+		// 	new THREE.PlaneBufferGeometry(2000, 2000),
+		// 	new THREE.MeshPhongMaterial({ color: 0x00FF00 })
+		// );
+		// mesh.rotation.x = - Math.PI / 2;
+		// mesh.receiveShadow = true;
+		// this.scene.add(mesh);
 
 		let grid = new THREE.GridHelper(2000, 40, 0x000000, 0x000000);
 		grid.material.opacity = 1.0;
 		this.scene.add(grid);
 
-		//const mtlLoader = new MTLLoader();
-		//mtlLoader.load(this.assetsPath + '/Building_01.mtl', (mtlParseResult) => {
-		const loader = new THREE.GLTFLoader();
-		//const material = MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-		//objLoader.addMaterials(material);
-		// objLoader.load(this.assetsPath + '/Building_01.obj', (root) => {
-		loader.load(this.assetsPath + '/SM_Bld_Base_01.glb', (root) => {
-			console.log('root === ', root);
-			this.scene.add(root.scene);
+		const loader = new THREE.FBXLoader();
+		loader.load('assets\\SM_Bld_Base_01.fbx', (object) => {
+		// loader.load('Vikings\\Character_Files\\FBX_Characters\\SK_Character_Viking_Chief_01.fbx', function (object) {
+		// loader.load('Dungeon\\Characters\\SK_Character_Skeleton_Knight.fbx', function (object) {
+		// loader.load('mixamo\\Mixamo_POLYGON_BigRig_Guy.fbx', function (object) {
+		// loader.load('textures/Mando_Helmet.fbx', function (object) {
+			object.traverse(function (child) {
+				console.log('child === ',child);
+				if (child.isMesh) {
+					child.scale.x = 0.01;
+					child.scale.y = 0.01;
+					child.scale.z = 0.01;
+					child.castShadow = true;
+					child.receiveShadow = true;
+				}
+			});
+			this.scene.add(object);
 		});
-		//});
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -80,11 +87,11 @@ class Game {
 		this.renderer.shadowMap.enabled = true;
 		this.container.appendChild(this.renderer.domElement);
 
-		const controls = new OrbitControls(this.camera, this.renderer.domElement);
+		const controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 		controls.target.set(0, 5, 0);
 		controls.update();
 
-		this.keyboard = new THREEx.KeyboardState();
+		// this.keyboard = new THREEx.KeyboardState();
 
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
 	}
