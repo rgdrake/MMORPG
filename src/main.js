@@ -1,6 +1,5 @@
 class Game {
 	constructor() {
-		// if (!THREE.WEBGL.isWebGLAvailable()) WEBGL.addGetWebGLMessage();
 		this.container;
 		this.player = [];
 		this.stats;
