@@ -30,8 +30,8 @@ class Game {
 		this.camera = new THREE.PerspectiveCamera(
 			45, window.innerWidth / window.innerHeight,
 			1, 2000);
-		this.camera.position.set(5, 10, 5);
-		this.camera.lookAt(new THREE.Vector3(752, 313, 693));
+		this.camera.position.set(1, 2, 1);
+		this.camera.lookAt(new THREE.Vector3(1, 1, 1));
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xa0a0a0);
@@ -83,11 +83,11 @@ class Game {
 		this.renderer.shadowMap.enabled = true;
 		this.container.appendChild(this.renderer.domElement);
 
+		/*
 		const controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 		controls.target.set(0, 5, 0);
 		controls.update();
-
-		// this.keyboard = new THREEx.KeyboardState();
+		*/
 
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
 	}
@@ -107,6 +107,22 @@ class Game {
 
 		if (this.player.mixer !== undefined) {
 			this.player.mixer.update(dt);
+		}
+
+		if (game.keyboard.pressed("w")) {
+			game.camera.position.x += 5;
+		}
+
+		if (game.keyboard.pressed("s")) {
+			game.camera.position.x -= 5;
+		}
+
+		if (game.keyboard.pressed("a")) {
+			game.camera.rotateY(-0.01);
+		}
+
+		if (game.keyboard.pressed("d")) {
+			game.camera.rotateY(0.01);
 		}
 
 		this.renderer.render(this.scene, this.camera);
