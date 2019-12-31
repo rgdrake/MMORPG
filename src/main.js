@@ -7,6 +7,7 @@ class Game {
 		this.camera;
 		this.scene;
 		this.renderer;
+		this.keyboard = new THREEx.KeyboardState();
 
 		this.container = document.createElement('div');
 		this.container.style.height = '100%';
