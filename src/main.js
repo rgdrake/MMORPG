@@ -35,7 +35,7 @@ class Game {
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xa0a0a0);
-		// this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+		this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
 
 		let light = new THREE.HemisphereLight(0xffffff);
 		light.position.set(0, 200, 0);
@@ -50,13 +50,13 @@ class Game {
 		light.shadow.camera.right = 120;
 		this.scene.add(light);
 
-		// let mesh = new THREE.Mesh(
-		// 	new THREE.PlaneBufferGeometry(2000, 2000),
-		// 	new THREE.MeshPhongMaterial({ color: 0x00FF00 })
-		// );
-		// mesh.rotation.x = - Math.PI / 2;
-		// mesh.receiveShadow = true;
-		// this.scene.add(mesh);
+		let mesh = new THREE.Mesh(
+			new THREE.PlaneBufferGeometry(2000, 2000),
+			new THREE.MeshPhongMaterial({ color: 0x00FF00 })
+		);
+		mesh.rotation.x = - Math.PI / 2;
+		mesh.receiveShadow = true;
+		this.scene.add(mesh);
 
 		let grid = new THREE.GridHelper(2000, 40, 0x000000, 0x000000);
 		grid.material.opacity = 1.0;
@@ -64,16 +64,12 @@ class Game {
 
 		const loader = new THREE.FBXLoader();
 		loader.load('assets\\SM_Bld_Base_01.fbx', (object) => {
-		// loader.load('Vikings\\Character_Files\\FBX_Characters\\SK_Character_Viking_Chief_01.fbx', function (object) {
-		// loader.load('Dungeon\\Characters\\SK_Character_Skeleton_Knight.fbx', function (object) {
-		// loader.load('mixamo\\Mixamo_POLYGON_BigRig_Guy.fbx', function (object) {
-		// loader.load('textures/Mando_Helmet.fbx', function (object) {
 			object.traverse(function (child) {
-				console.log('child === ',child);
+				// console.log('child === ', child);
 				if (child.isMesh) {
-					child.scale.x = 0.01;
-					child.scale.y = 0.01;
-					child.scale.z = 0.01;
+					child.scale.x = 0.1;
+					child.scale.y = 0.1;
+					child.scale.z = 0.1;
 					child.castShadow = true;
 					child.receiveShadow = true;
 				}
