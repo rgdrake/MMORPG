@@ -7,7 +7,8 @@ class Game {
 		this.camera;
 		this.scene;
 		this.renderer;
-		this.keyboard = new THREEx.KeyboardState();
+		this.group;
+
 
 		this.container = document.createElement('div');
 		this.container.style.height = '100%';
@@ -27,15 +28,26 @@ class Game {
 	}
 
 	init() {
-		this.camera = new THREE.PerspectiveCamera(
-			45, window.innerWidth / window.innerHeight,
-			1, 2000);
-		this.camera.position.set(1, 2, 1);
-		this.camera.lookAt(new THREE.Vector3(1, 1, 1));
-
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0xa0a0a0);
 		this.scene.fog = new THREE.Fog(0xa0a0a0, 200, 1000);
+
+		this.camera = new THREE.PerspectiveCamera(
+			45, window.innerWidth / window.innerHeight,
+			1, 2000);
+		this.camera.position.set(0, 2, 100);
+		this.camera.lookAt(this.scene.position);
+
+		this.group = new THREE.Group();
+		this.group.add(this.camera);
+
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer.setPixelRatio(window.devicePixelRatio);
+		this.renderer.setSize(window.innerWidth, window.innerHeight);
+		this.renderer.shadowMap.enabled = true;
+		this.container.appendChild(this.renderer.domElement);
+
+		this.keyboard = new THREEx.KeyboardState(); ''
 
 		let light = new THREE.HemisphereLight(0xffffff);
 		light.position.set(0, 200, 0);
@@ -77,11 +89,7 @@ class Game {
 			this.scene.add(object);
 		});
 
-		this.renderer = new THREE.WebGLRenderer({ antialias: true });
-		this.renderer.setPixelRatio(window.devicePixelRatio);
-		this.renderer.setSize(window.innerWidth, window.innerHeight);
-		this.renderer.shadowMap.enabled = true;
-		this.container.appendChild(this.renderer.domElement);
+
 
 		/*
 		const controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
@@ -110,19 +118,19 @@ class Game {
 		}
 
 		if (game.keyboard.pressed("w")) {
-			game.camera.position.x += 5;
-		}
-
-		if (game.keyboard.pressed("s")) {
 			game.camera.position.x -= 5;
 		}
 
+		if (game.keyboard.pressed("s")) {
+			game.camera.position.x += 5;
+		}
+
 		if (game.keyboard.pressed("a")) {
-			game.camera.rotateY(-0.01);
+			game.camera.rotateY(0.01);
 		}
 
 		if (game.keyboard.pressed("d")) {
-			game.camera.rotateY(0.01);
+			game.camera.rotateY(-0.01);
 		}
 
 		this.renderer.render(this.scene, this.camera);
