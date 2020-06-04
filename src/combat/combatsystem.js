@@ -1,4 +1,4 @@
-
+const { Player } = require("../player/player.js");
 
 class CombatSystem {
 	d20() {
@@ -9,7 +9,13 @@ class CombatSystem {
 	}
 
 	fight(mob1, mob2) {
-		if (typeof mob1 === player)
+		if (this.d20() > 10) {
+			mob2.dead = true;
+		} else {
+			mob1.dead = true;
+		}
 
 	}
+
+}
 }

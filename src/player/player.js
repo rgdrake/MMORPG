@@ -12,7 +12,6 @@ class Player {
 			cha: 0     //Charisma
 		};
 		this.hitpoints = 0;
-		this.spellpoints = 0;
 		this.x = 0;
 		this.y = 0;
 		this.inventory = [];
@@ -39,16 +38,6 @@ class Player {
 		this.attributes.cha = this.rollAttribute();
 	}
 
-
-	toHtml() {
-		let html = `Strength: ${this.attributes.str} <br />
-        Intelligence: ${this.attributes.int} <br />
-        Wisdom: ${this.attributes.wis} <br />
-        Dexterity: ${this.attributes.dex} <br />
-        Constitution: ${this.attributes.con} <br />
-        Charisma: ${this.attributes.cha}`;
-		return html;
-	}
 }
 
 
@@ -56,4 +45,4 @@ class Player {
 let player = new Player();
 player.rollCharacter();
 console.log(player.inventory);
-//console.log(JSON.stringify(player));
+console.log(JSON.stringify(player));
