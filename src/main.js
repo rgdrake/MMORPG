@@ -85,17 +85,10 @@ class Game {
 					child.castShadow = true;
 					child.receiveShadow = true;
 				}
+				this.scene.add(object);
 			});
-			this.scene.add(object);
+
 		});
-
-
-
-		/*
-		const controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-		controls.target.set(0, 5, 0);
-		controls.update();
-		*/
 
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
 	}
