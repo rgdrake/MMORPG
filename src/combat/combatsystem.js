@@ -1,4 +1,4 @@
-const { Player } = require("../player/player.js");
+//const { Player } = require("../player/player.js");
 
 class CombatSystem {
 	d20() {

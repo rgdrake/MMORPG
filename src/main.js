@@ -1,3 +1,7 @@
+const { Dice } = require('./dice/randomdice');
+const { Player } = require('./player/player.js');
+
+
 class Game {
 	constructor() {
 		this.container;
