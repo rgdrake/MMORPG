@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<title>THREE.js tutorial</title>
-	<style>
-		body {
-			margin: 0;
-		}
-	</style>
-	<script src="lib/three.js"></script>
-	<script src="lib/FBXLoader.js"></script>
-	<!-- <script src="lib/OrbitControls.js"></script> -->
-	<script src="lib/threex.keyboardstate.js"></script>
-	<script src="lib/Inflate.min.js"></script>
-
-</head>
-
-<body>
-
-	<script src="main.js"></script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			const game = new Game();
-			window.game = game;
-			game.animate();
-		});
-	</script>
-</body>
-
+    <head>
+        <title>YARPG</title>
+        <style>
+            body { margin: 0; }
+            canvas { width: 100%; height: 100%; }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.117.1/build/three.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.117.1/examples/js/controls/OrbitControls.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.117.1/examples/js/loaders/GLTFLoader.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/three@0.117.1/examples/js/loaders/FBXLoader.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.117.1/examples/js/loaders/OBJLoader.js"></script> -->
+    </head>
+    <body>
+        <script src="main.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const game = new Game({
+                    presetControls: "orbit"
+                });
+                window.game = game;
+                game.animate();
+            });
+        </script>
+    </body>
 </html>
+

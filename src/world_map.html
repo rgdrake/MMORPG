@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>YARPG (world map)</title>
+
+        <script src="assets/BrowserQuest_world_map.js"></script>
+        <script src="assets/palettes.js"></script>
+        <script src="main.js"></script>
+        
+    </head>
+    <body>
+        <b>This page is a work in progress...</b><br/><br/>
+        <canvas id="canvas"></canvas>
+        <script>
+            const colorMap = {};
+            document.addEventListener("DOMContentLoaded", function () {
+                const palette = Object.keys(palettes).reduce((ret,n)=>{
+                    ret = ret.concat(palettes[n]);
+                    return ret;
+                },[]);
+                const dataIdxMap = [];
+                const dataIdxCounts = {};
+                const cellSize = 2;
+                const w = canvas.width = mapData.width * cellSize;
+                const h = canvas.height = mapData.height * cellSize;
+                const ctx = canvas.getContext("2d");
+                let i = 0;
+                for (let y = 0; y < h; y++) {
+                    for (let x = 0; x < w; x++) {
+                        const isArray = mapData.data[i] instanceof Array;
+                        let idx = isArray ? dataIdxMap.indexOf(mapData.data[i][0]) : dataIdxMap.indexOf(mapData.data[i]);
+                        
+                        if(idx === -1){
+                            if(isArray) {
+                                idx = dataIdxMap.length;
+                            }
+                            dataIdxMap.push(isArray ? mapData.data[i][0] : mapData.data[i]);
+                        }
+                        if(!dataIdxCounts[idx])dataIdxCounts[idx] = 0;
+                        dataIdxCounts[idx]++;
+                        ctx.fillStyle = palette[idx];
+                        // ctx.fillRect(x, y, cellSize, cellSize);
+                        ctx.fillRect(x * cellSize, y * cellSize * 2, cellSize, cellSize * 2);
+                        i++;
+                    }
+                    // i++;
+                }
+                console.log('dataIdxCounts === ',dataIdxCounts);
+                console.log('dataIdxMap === ',dataIdxMap);
+            });
+        </script>
+    </body>
+</html>
+

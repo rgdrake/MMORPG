@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Padded",
+        "cost": "5 gp",
+        "ac": "11 + Dex modifier",
+        "strength": "—",
+        "stealth": "Disadvantage",
+        "weight": "8 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Leather",
+        "cost": "10 gp",
+        "ac": "11 + Dex modifier",
+        "strength": "—",
+        "stealth": "—",
+        "weight": "10 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Studded leather",
+        "cost": "45 gp",
+        "ac": "12 + Dex modifier",
+        "strength": "—",
+        "stealth": "—",
+        "weight": "13 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Hide",
+        "cost": "10 gp",
+        "ac": "12 + Dex modifier (max 2)",
+        "strength": "—",
+        "stealth": "—",
+        "weight": "12 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Chain shirt",
+        "cost": "50 gp",
+        "ac": "13 + Dex modifier (max 2)",
+        "strength": "—",
+        "stealth": "—",
+        "weight": "20 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Scale mail",
+        "cost": "50 gp",
+        "ac": "14 + Dex modifier (max 2)",
+        "strength": "—",
+        "stealth": "Disadvantage",
+        "weight": "45 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Breastplate",
+        "cost": "400 gp",
+        "ac": "14 + Dex modifier (max 2)",
+        "strength": "—",
+        "stealth": "—",
+        "weight": "20 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#0070dd"
+    },
+    {
+        "name": "Half plate",
+        "cost": "750 gp",
+        "ac": "15 + Dex modifier (max 2)",
+        "strength": "—",
+        "stealth": "Disadvantage",
+        "weight": "40 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#0070dd"
+    },
+    {
+        "name": "Ring mail",
+        "cost": "30 gp",
+        "ac": "14",
+        "strength": "—",
+        "stealth": "Disadvantage",
+        "weight": "40 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Chain mail",
+        "cost": "75 gp",
+        "ac": "16",
+        "strength": "Str 13",
+        "stealth": "Disadvantage",
+        "weight": "55 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Splint",
+        "cost": "200 gp",
+        "ac": "17",
+        "strength": "Str 15",
+        "stealth": "Disadvantage",
+        "weight": "60 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#0070dd"
+    },
+    {
+        "name": "Plate",
+        "cost": "1,500 gp",
+        "ac": "18",
+        "strength": "Str 15",
+        "stealth": "Disadvantage",
+        "weight": "65 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#0070dd"
+    }
+]

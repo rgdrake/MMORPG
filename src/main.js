@@ -1,9 +1,9 @@
-const { Dice } = require('./dice/randomdice');
-const { Player } = require('./player/player.js');
+// const { Dice } = require('./dice/randomdice');
+// const { Player } = require('./player/player.js');
 
-
+// console.log('Dice === ',Dice);
 class Game {
-	constructor() {
+	constructor(options = {}) {
 		this.container;
 		this.player = [];
 		this.stats;
@@ -13,16 +13,17 @@ class Game {
 		this.renderer;
 		this.group;
 
+        this.assetsPath = './assets';
 
-		this.container = document.createElement('div');
-		this.container.style.height = '100%';
-		document.body.appendChild(this.container);
+        if(!this.container){
+            this.container = document.createElement('div');
+            this.container.style.height = '100%';
+            document.body.appendChild(this.container);
+        }
 
-		const game = this;
-
-		this.assetsPath = './assets';
-
-		this.clock = new THREE.Clock();
+        this.clock = new THREE.Clock();
+        
+		Object.assign(this, options);
 
 		this.init();
 
@@ -51,7 +52,8 @@ class Game {
 		this.renderer.shadowMap.enabled = true;
 		this.container.appendChild(this.renderer.domElement);
 
-		this.keyboard = new THREEx.KeyboardState(); ''
+        // this.keyboard = new THREEx.KeyboardState(); ''
+        this.controls = this.initControls();
 
 		let light = new THREE.HemisphereLight(0xffffff);
 		light.position.set(0, 200, 0);
@@ -97,6 +99,15 @@ class Game {
 		window.addEventListener('resize', function () { game.onWindowResize(); }, false);
 	}
 
+    initControls() {
+        switch(this.presetControls) {
+            case "orbit":
+                return new THREE.OrbitControls( this.camera, this.renderer.domElement );
+            case "first_person":
+                return new THREE.FirstPersonControls( this.camera, this.renderer.domElement );
+        }
+    }
+
 	onWindowResize() {
 		this.camera.aspect = window.innerWidth / window.innerHeight;
 		this.camera.updateProjectionMatrix();
@@ -114,21 +125,21 @@ class Game {
 			this.player.mixer.update(dt);
 		}
 
-		if (game.keyboard.pressed("w")) {
-			game.camera.position.x -= 5;
-		}
+		// if (game.keyboard.pressed("w")) {
+		// 	game.camera.position.x -= 5;
+		// }
 
-		if (game.keyboard.pressed("s")) {
-			game.camera.position.x += 5;
-		}
+		// if (game.keyboard.pressed("s")) {
+		// 	game.camera.position.x += 5;
+		// }
 
-		if (game.keyboard.pressed("a")) {
-			game.camera.rotateY(0.01);
-		}
+		// if (game.keyboard.pressed("a")) {
+		// 	game.camera.rotateY(0.01);
+		// }
 
-		if (game.keyboard.pressed("d")) {
-			game.camera.rotateY(-0.01);
-		}
+		// if (game.keyboard.pressed("d")) {
+		// 	game.camera.rotateY(-0.01);
+		// }
 
 		this.renderer.render(this.scene, this.camera);
 	}

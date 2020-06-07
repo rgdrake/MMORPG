@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>YARPG (items)</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+
+        <script src="assets/BrowserQuest_world_map.js"></script>
+        <script src="assets/palettes.js"></script>
+
+        <script src="ECS/systems/GUI.js"></script>
+
+        <script src="ECS/components/quality.js"></script>
+        <script src="ECS/components/materials.js"></script>
+        <script src="ECS/components/weapons.js"></script>
+        <script src="ECS/components/armors.js"></script>
+
+        <script src="main.js"></script>
+        <style>
+            @font-face {
+                font-family: 'pixel';
+                src: url("assets/fonts/ST01R.TTF");
+            }
+            *{
+                font-family: "pixel";
+            }
+            body {
+                background-color: #555;
+            }
+            fieldset{
+                text-align: center;
+                border: 2px solid #FFF;
+            }
+            legend {
+                position: relative;
+                top: 5px;
+                color: #FFF;
+                font-size: 30px;
+            }
+            .yinyang-h{
+                display: flex;
+                flex-direction: row;
+            }
+            .yinyang-v{
+                display: flex;
+                flex-direction: column;
+            }
+            .yin{
+                /* background-color: #333; */
+            }
+            .yang{
+                flex: 1;
+            }
+            .item-div{
+                margin-bottom: 4px;
+                background-color: #333;
+                border-radius: 3px;
+                border: 4px solid #333;
+                color: #fff;
+            }
+            .item-details{
+                margin-left: 4px;
+                border-radius: 3px;
+            }
+            .item-thumbnail{
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                border: 3px solid white;
+                border-radius: 3px;
+                background-color:#777;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset id="items_fieldset">
+            <legend>ITEMS</legend>
+            <div id="items_wrapper" class="yinyang-h">
+                <fieldset class="yin">
+                    <legend>ARMOR:<b id="armor_count">0</b></legend>
+                    <div id="armor_wrapper"></div>
+                </fieldset>
+                <fieldset class="yang">
+                    <legend>WEAPONS:<b id="weapons_count">0</b></legend>
+                    <div id="weapons_wrapper"></div>
+                </fieldset>
+            </div>
+        </fieldset>
+        <script>
+            Promise.all([
+                fetch("assets/dnd_armor.json").then(r=>r.json()),
+                fetch("assets/dnd_weapons.json").then(r=>r.json()),
+            ]).then(data=>{
+                const [
+                    armorData,
+                    weaponData
+                ] = data;
+                console.log('armorData === ',armorData);
+                console.log('weaponData === ',weaponData);
+
+                armor_count.textContent = armorData.length;
+                armor_wrapper.innerHTML = armorData.map(d=>{
+                    return `
+<div class="item-div yinyang-h">
+    <div class="item-thumbnail yin" style="border-color:${d.rarityColor};">
+        <i class="fas fa-question"></i>
+    </div>
+    <div class="item-details yang yinyang-v">
+        <div class="yin yinyang-h">
+            <div class="yang" style="text-align:left;color:${d.rarityColor};">
+                [${d.name}]
+            </div>
+            <div class="yin" style="text-align:left;color:${d.costColor};">
+                ${d.cost}
+            </div>
+        </div>
+        <div class="yang yinyang-h">
+            <div class="yang" style="text-align:left;">AC: ${d.ac}</div>
+            <div class="yin">${d.weight} <i class="fas fa-weight-hanging"></i></div>
+        </div>
+    </div>
+</div>`
+                }).join("");
+                weapons_count.textContent = weaponData.length;
+                weapons_wrapper.innerHTML = weaponData.map(d=>{
+                    return `
+<div class="item-div yinyang-h">
+    <div class="item-thumbnail yin" style="border-color:${d.rarityColor};">
+        <i class="fas fa-question"></i>
+    </div>
+    <div class="item-details yang yinyang-v">
+        <div class="yin yinyang-h">
+            <div class="yang" style="text-align:left;color:${d.rarityColor};">
+                [${d.name}]
+            </div>
+            <div class="yin" style="text-align:left;color:${d.costColor};">
+                ${d.cost}
+            </div>
+        </div>
+        <div class="yang yinyang-h">
+            <div class="yang" style="text-align:left;">${d.damage}</div>
+            <div class="yin">${d.weight} <i class="fas fa-weight-hanging"></i></div>
+        </div>
+    </div>
+</div>`
+                }).join("");
+            });
+        </script>
+    </body>
+</html>
+

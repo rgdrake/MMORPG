@@ -3,5 +3,5 @@ node_modules/
 server/node_modules
 .cache
 dist/
-src/assets
+src/assets/ignored
 

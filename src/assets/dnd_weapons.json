@@ -1,0 +1,335 @@
+[
+    {
+        "name": "Club",
+        "cost": "1 sp",
+        "damage": "1d4 bludgeoning",
+        "properties": "Light",
+        "weight": "2 lb.",
+        "costColor": "#BDC3C7",
+        "rarityColor": "#ffffff"
+    },
+    {
+        "name": "Dagger",
+        "cost": "2 gp",
+        "damage": "1d4 piercing",
+        "properties": "Finesse, light, thrown (range 20/60)",
+        "weight": "1 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Greatclub",
+        "cost": "2 sp",
+        "damage": "1d8 bludgeoning",
+        "properties": "Two-handed",
+        "weight": "10 lb.",
+        "costColor": "#BDC3C7",
+        "rarityColor": "#ffffff"
+    },
+    {
+        "name": "Handaxe",
+        "cost": "5 gp",
+        "damage": "1d6 slashing",
+        "properties": "Light, thrown (range 20/60)",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Javelin",
+        "cost": "5 sp",
+        "damage": "1d6 piercing",
+        "properties": "Thrown (range 30/120)",
+        "weight": "2 lb.",
+        "costColor": "#BDC3C7",
+        "rarityColor": "#ffffff"
+    },
+    {
+        "name": "Light hammer",
+        "cost": "2 gp",
+        "damage": "1d4 bludgeoning",
+        "properties": "Light, thrown (range 20/60)",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Mace",
+        "cost": "5 gp",
+        "damage": "1d6 bludgeoning",
+        "properties": "—",
+        "weight": "4 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Quarterstaff",
+        "cost": "2 sp",
+        "damage": "1d6 bludgeoning",
+        "properties": "Versatile (1d8)",
+        "weight": "4 lb.",
+        "costColor": "#BDC3C7",
+        "rarityColor": "#ffffff"
+    },
+    {
+        "name": "Sickle",
+        "cost": "1 gp",
+        "damage": "1d4 slashing",
+        "properties": "Light",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Spear",
+        "cost": "1 gp",
+        "damage": "1d6 piercing",
+        "properties": "Thrown (range 20/60), versatile (1d8)",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Crossbow, light",
+        "cost": "25 gp",
+        "damage": "1d8 piercing",
+        "properties": "Ammunition (range 80/320), loading, two-handed",
+        "weight": "5 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Dart",
+        "cost": "5 cp",
+        "damage": "1d4 piercing",
+        "properties": "Finesse, thrown (range 20/60)",
+        "weight": "1/4 lb.",
+        "costColor": "#DC7633",
+        "rarityColor": "#9d9d9d"
+    },
+    {
+        "name": "Shortbow",
+        "cost": "25 gp",
+        "damage": "1d6 piercing",
+        "properties": "Ammunition (range 80/320), two-handed",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Sling",
+        "cost": "1 sp",
+        "damage": "1d4 bludgeoning",
+        "properties": "Ammunition (range 30/120)",
+        "weight": "—",
+        "costColor": "#BDC3C7",
+        "rarityColor": "#ffffff"
+    },
+    {
+        "name": "Battleaxe",
+        "cost": "10 gp",
+        "damage": "1d8 slashing",
+        "properties": "Versatile (1d10)",
+        "weight": "4 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Flail",
+        "cost": "10 gp",
+        "damage": "1d8 bludgeoning",
+        "properties": "—",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Glaive",
+        "cost": "20 gp",
+        "damage": "1d10 slashing",
+        "properties": "Heavy, reach, two-handed",
+        "weight": "6 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Greataxe",
+        "cost": "30 gp",
+        "damage": "1d12 slashing",
+        "properties": "Heavy, two-handed",
+        "weight": "7 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Greatsword",
+        "cost": "50 gp",
+        "damage": "2d6 slashing",
+        "properties": "Heavy, two-handed",
+        "weight": "6 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Halberd",
+        "cost": "20 gp",
+        "damage": "1d10 slashing",
+        "properties": "Heavy, reach, two-handed",
+        "weight": "6 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Lance",
+        "cost": "10 gp",
+        "damage": "1d12 piercing",
+        "properties": "Reach, special",
+        "weight": "6 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Longsword",
+        "cost": "15 gp",
+        "damage": "1d8 slashing",
+        "properties": "Versatile (1d10)",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Maul",
+        "cost": "10 gp",
+        "damage": "2d6 bludgeoning",
+        "properties": "Heavy, two-handed",
+        "weight": "10 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Morningstar",
+        "cost": "15 gp",
+        "damage": "1d8 piercing",
+        "properties": "—",
+        "weight": "4 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Pike",
+        "cost": "5 gp",
+        "damage": "1d10 piercing",
+        "properties": "Heavy, reach, two-handed",
+        "weight": "18 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Rapier",
+        "cost": "25 gp",
+        "damage": "1d8 piercing",
+        "properties": "Finesse",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Scimitar",
+        "cost": "25 gp",
+        "damage": "1d6 slashing",
+        "properties": "Finesse, light",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Shortsword",
+        "cost": "10 gp",
+        "damage": "1d6 piercing",
+        "properties": "Finesse, light",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Trident",
+        "cost": "5 gp",
+        "damage": "1d6 piercing",
+        "properties": "Thrown (range 20/60), versatile (1d8)",
+        "weight": "4 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "War pick",
+        "cost": "5 gp",
+        "damage": "1d8 piercing",
+        "properties": "—",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Warhammer",
+        "cost": "15 gp",
+        "damage": "1d8 bludgeoning",
+        "properties": "Versatile (1d10)",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Whip",
+        "cost": "2 gp",
+        "damage": "1d4 slashing",
+        "properties": "Finesse, reach",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Blowgun",
+        "cost": "10 gp",
+        "damage": "1 piercing",
+        "properties": "Ammunition (range 25/100), loading",
+        "weight": "1 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Crossbow, hand",
+        "cost": "75 gp",
+        "damage": "1d6 piercing",
+        "properties": "Ammunition (range 30/120), light, loading",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Crossbow, heavy",
+        "cost": "50 gp",
+        "damage": "1d10 piercing",
+        "properties": "Ammunition (range 100/400), heavy, loading, two-handed",
+        "weight": "18 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Longbow",
+        "cost": "50 gp",
+        "damage": "1d8 piercing",
+        "properties": "Ammunition (range 150/600), heavy, two-handed",
+        "weight": "2 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    },
+    {
+        "name": "Net",
+        "cost": "1 gp",
+        "damage": "—",
+        "properties": "Special, thrown (range 5/15)",
+        "weight": "3 lb.",
+        "costColor": "goldenrod",
+        "rarityColor": "#1eff00"
+    }
+]
